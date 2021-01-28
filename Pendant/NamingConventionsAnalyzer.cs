@@ -22,7 +22,7 @@ namespace Pendant
         /// Public list that stores all the errors found within the open document
         /// </summary>
         //public static BindingList<Error> ErrorList = new BindingList<Error>();
-
+        
         /// <summary>
         /// The Id for the diagnostic
         /// </summary>
