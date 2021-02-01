@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Analyzer1.cs" />
+    <Compile Include="CommentsAnalyzer.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="NamingConventionsAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
