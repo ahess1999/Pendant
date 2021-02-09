@@ -21,7 +21,7 @@ namespace Pendant
         /// <summary>
         /// Public list that stores all the errors found within the open document
         /// </summary>
-        //public static BindingList<Error> ErrorList = new BindingList<Error>();
+        public static List<Error> ErrorList = new List<Error>();
         
         /// <summary>
         /// The Id for the diagnostic
@@ -89,7 +89,7 @@ namespace Pendant
             if (nameOfParameter.Any())
             {
                 Error e = new Error("Property Error", "Naming Convention");
-                //ErrorList.Add(e);
+                ErrorList.Add(e);
                 //Gets the location of the diagnostic
                 var location = propertyDeclaration.Identifier.GetLocation();
                 //Finds other locations

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Pendant.ErrorDescriptionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             mc:Ignorable="d"
+             d:DesignHeight="284" d:DesignWidth="300"
+             Name="MyToolWindow">
+    <StackPanel Orientation="Vertical" Grid.RowSpan="3">
+        <TextBlock Background="White" TextAlignment="Center" FontWeight="Heavy">Error Descriptions Window</TextBlock>
+        <ListBox Height="284" Width="300" Name="ErrorListBox" ItemsSource="{Binding Path = ErrorList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path= TypeOfError}"/>
+                        <TextBlock Text="{Binding Path= ErrorMessage}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</UserControl>
