@@ -21,7 +21,7 @@ namespace Pendant
         /// <summary>
         /// Public list that stores all the errors found within the open document
         /// </summary>
-        public static List<Error> ErrorList = new List<Error>();
+        public static BindingList<Error> ErrorList = new BindingList<Error>();
         
         /// <summary>
         /// The Id for the diagnostic
@@ -36,7 +36,7 @@ namespace Pendant
         /// <summary>
         /// Message layout, displays "Violation" and which one it is
         /// </summary>
-        internal static readonly LocalizableString MessageFormat = "Violation '{0}'";
+        internal static readonly LocalizableString MessageFormat = "Violation: {0}";
 
         /// <summary>
         /// The category of the diagnostic so that you can cipher through which is which
@@ -133,7 +133,7 @@ namespace Pendant
                                     //Error e = new Error("Field Error", "Naming Convention");
                                     //ErrorList.Add(e);
                                     //Creates a diagnostic at the location of the field name
-                                    var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Private Fields should start with an '_ ");
+                                    var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Private Fields should start with an '_'");
                                     //Reports the problem in the code
                                     context.ReportDiagnostic(diagnostic);
                                 }
@@ -165,7 +165,7 @@ namespace Pendant
                         if (identName.Identifier.ValueText[0] != 'I')
                         {
                             //Creates a diagnostic at the location of the interface name
-                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I ");
+                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I'");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -173,7 +173,7 @@ namespace Pendant
                         if (identName.Identifier.ValueText[0] == 'I' && Char.IsLower(identName.Identifier.ValueText[1]))
                         {
                             //Creates a diagnostic at the location of the interface name
-                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I and the seconde");
+                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I' and the second letter should be capital");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -207,13 +207,6 @@ namespace Pendant
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
-                        if (identName.Identifier.ValueText[0] == 'I' && !Char.IsLower(identName.Identifier.ValueText[1]))
-                        {
-                            //Creates a diagnostic at the location of the struct name
-                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Structs that begin with 'I' should not have the second letter capital");
-                            //Reports the problem in the code
-                            context.ReportDiagnostic(diagnostic);
-                        }
                     }
                 }
             }
@@ -244,13 +237,6 @@ namespace Pendant
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
-                        if (identName.Identifier.ValueText[0] == 'I' && !Char.IsLower(identName.Identifier.ValueText[1]))
-                        {
-                            //Creates a diagnostic at the location of the enum name
-                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Enums that begin with 'I' should not have the second letter capital");
-                            //Reports the problem in the code
-                            context.ReportDiagnostic(diagnostic);
-                        }
                     }
                 }
             }
@@ -278,13 +264,6 @@ namespace Pendant
                         {
                             //Creates a diagnostic at the location of the class name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Class names should begin with a capital letter");
-                            //Reports the problem in the code
-                            context.ReportDiagnostic(diagnostic);
-                        }
-                        if (identName.Identifier.ValueText[0] == 'I' && !Char.IsLower(identName.Identifier.ValueText[1]))
-                        {
-                            //Creates a diagnostic at the location of the class name
-                            var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Classes that begin with 'I' should not have the second letter capital");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pendant;
 
 namespace TestHelper
 {
@@ -19,7 +20,7 @@ namespace TestHelper
         /// </summary>
         protected virtual DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return null;
+            return new NamingConventionsAnalyzer();
         }
 
         /// <summary>
