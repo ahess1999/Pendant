@@ -53,17 +53,33 @@ namespace Pendant
         {
             context.RegisterSyntaxNodeAction(AnalyzeCommentOfFields, SyntaxKind.FieldDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzeCommentOfProperties, SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfInterfaces, SyntaxKind.InterfaceDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfStructs, SyntaxKind.StructDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfEnums, SyntaxKind.EnumDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfClasses, SyntaxKind.ClassDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfMethods, SyntaxKind.MethodDeclaration);
         }
 
         /// <summary>
-        /// 
+        /// Analyzes properties in the document to make sure they have proper XML Comment Documentation.
         /// </summary>
-        public int gte { get; }
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfProperties(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
+        }
 
         /// <summary>
-        /// 
+        /// Analyzes fields in the document to make sure they have proper XML Comment Documentation.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfFields(SyntaxNodeAnalysisContext context)
         {
             //Finds the property delcarations within the cs file
@@ -77,17 +93,81 @@ namespace Pendant
         }
 
         /// <summary>
-        /// 
+        /// Analyzes interfaces in the document to make sure they have proper XML Comment Documentation.
         /// </summary>
-        /// <param name="context"></param>
-        private static void AnalyzeCommentOfProperties(SyntaxNodeAnalysisContext context)
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfInterfaces(SyntaxNodeAnalysisContext context)
         {
             //Finds the property delcarations within the cs file
-            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+            var interfaceDeclaration = (InterfaceDeclarationSyntax)context.Node;
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes structs in the document to make sure they have proper XML Comment Documentation.
+        /// </summary>
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfStructs(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var structDeclaration = (StructDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes enums in the document to make sure they have proper XML Comment Documentation.
+        /// </summary>
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfEnums(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var enumDeclaration = (EnumDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes classes in the document to make sure they have proper XML Comment Documentation.
+        /// </summary>
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfClasses(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var classDeclaration = (ClassDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes methods in the document to make sure they have proper XML Comment Documentation.
+        /// </summary>
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfMethods(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var methodDeclaration = (MethodDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Properties must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
