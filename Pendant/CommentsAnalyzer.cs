@@ -27,7 +27,7 @@ namespace Pendant
         /// <summary>
         /// Message layout, displays "Violation" and which one it is
         /// </summary>
-        internal static readonly LocalizableString MessageFormat = "Violation '{0}'";
+        internal static readonly LocalizableString MessageFormat = "Violation: {0}";
 
         /// <summary>
         /// The category of the diagnostic so that you can cipher through which is which
@@ -87,7 +87,7 @@ namespace Pendant
 
             if(context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -103,7 +103,7 @@ namespace Pendant
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -119,7 +119,7 @@ namespace Pendant
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -135,7 +135,7 @@ namespace Pendant
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -151,7 +151,7 @@ namespace Pendant
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -167,7 +167,7 @@ namespace Pendant
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
