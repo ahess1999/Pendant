@@ -51,25 +51,45 @@ namespace Pendant
         /// <param name="context">The analysis that runs methods constantly when the page is open.</param>
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSyntaxNodeAction(CommentAnalyzer, SyntaxKind.ClassDeclaration);
-
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfFields, SyntaxKind.FieldDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfProperties, SyntaxKind.PropertyDeclaration);
         }
 
         /// <summary>
-        /// Analyzes the Comment section (leading trivia) to see if they comply with CIS 300 and CIS 400 at KSU
+        /// 
         /// </summary>
-        /// <param name="context">The context of the Property</param>
-        private static void CommentAnalyzer(SyntaxNodeAnalysisContext context)
+        public int gte { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        private static void AnalyzeCommentOfFields(SyntaxNodeAnalysisContext context)
         {
-            var commentDeclaration = (ClassDeclarationSyntax)context.Node;
-            var leadingComment = context.Node.GetLeadingTrivia();
+            //Finds the property delcarations within the cs file
+            var fieldDeclaration = (FieldDeclarationSyntax)context.Node;
 
-            /*
-            if (leadingComment.Any())
+            if(context.Node.HasStructuredTrivia == false)
             {
-
+                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
             }
-            */
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        private static void AnalyzeCommentOfProperties(SyntaxNodeAnalysisContext context)
+        {
+            //Finds the property delcarations within the cs file
+            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+
+            if (context.Node.HasStructuredTrivia == false)
+            {
+                var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                context.ReportDiagnostic(diagnostic);
+            }
         }
     }
 }

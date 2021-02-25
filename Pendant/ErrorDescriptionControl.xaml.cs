@@ -15,20 +15,15 @@
         public ErrorDescriptionControl()
         {
             this.InitializeComponent();
+            Loaded += ErrorListBox_Loaded;
         }
 
-        /// <summary>
-        /// Handles click on the button by displaying a message box.
-        /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event args.</param>
-        [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void ErrorListBox_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-                "ErrorDescription");
+            foreach(Error err in NamingConventionsAnalyzer.ErrorList)
+            {
+                ErrorListBox.Items.Add(err.TypeOfError);
+            }
         }
     }
 }

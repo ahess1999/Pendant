@@ -21,8 +21,8 @@ namespace Pendant
         /// <summary>
         /// Public list that stores all the errors found within the open document
         /// </summary>
-        public static BindingList<Error> ErrorList = new BindingList<Error>();
-        
+        public static List<Error> ErrorList = new List<Error>();
+
         /// <summary>
         /// The Id for the diagnostic
         /// </summary>
@@ -90,6 +90,9 @@ namespace Pendant
             {
                 Error e = new Error("Property Error", "Naming Convention");
                 ErrorList.Add(e);
+                System.Diagnostics.Debug.WriteLine("=====================");
+                System.Diagnostics.Debug.WriteLine(e.ErrorMessage);
+                System.Diagnostics.Debug.WriteLine("=====================");
                 //Gets the location of the diagnostic
                 var location = propertyDeclaration.Identifier.GetLocation();
                 //Finds other locations
@@ -130,8 +133,6 @@ namespace Pendant
                                 //Checks to see if the first character of the field's name is an '_'
                                 if (identName.Identifier.ValueText[0] != '_')
                                 {
-                                    //Error e = new Error("Field Error", "Naming Convention");
-                                    //ErrorList.Add(e);
                                     //Creates a diagnostic at the location of the field name
                                     var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Private Fields should start with an '_'");
                                     //Reports the problem in the code

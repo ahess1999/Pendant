@@ -9,15 +9,6 @@
              Name="MyToolWindow">
     <StackPanel Orientation="Vertical" Grid.RowSpan="3">
         <TextBlock Background="White" TextAlignment="Center" FontWeight="Heavy">Error Descriptions Window</TextBlock>
-        <ListBox Height="284" Width="300" Name="ErrorListBox" ItemsSource="{Binding Path = ErrorList}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path= TypeOfError}"/>
-                        <TextBlock Text="{Binding Path= ErrorMessage}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox Height="284" Width="300" Name="ErrorListBox"/>
     </StackPanel>
 </UserControl>
