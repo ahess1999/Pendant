@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System;
+using System.Collections.Immutable;
+using System.Text.RegularExpressions;
 
 namespace Pendant
 {
@@ -82,12 +79,12 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfFields(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            //Finds the field delcarations within the cs file
             var fieldDeclaration = (FieldDeclarationSyntax)context.Node;
 
-            if(context.Node.HasStructuredTrivia == false)
+            if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -98,12 +95,12 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfInterfaces(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            //Finds the interface delcarations within the cs file
             var interfaceDeclaration = (InterfaceDeclarationSyntax)context.Node;
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -114,12 +111,12 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfStructs(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            //Finds the struct delcarations within the cs file
             var structDeclaration = (StructDeclarationSyntax)context.Node;
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -130,12 +127,12 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfEnums(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            //Finds the enum delcarations within the cs file
             var enumDeclaration = (EnumDeclarationSyntax)context.Node;
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -146,12 +143,12 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfClasses(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            //Finds the class delcarations within the cs file
             var classDeclaration = (ClassDeclarationSyntax)context.Node;
 
             if (context.Node.HasStructuredTrivia == false)
             {
-                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -162,12 +159,34 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfMethods(SyntaxNodeAnalysisContext context)
         {
-            //Finds the property delcarations within the cs file
+            // Finds the method delcarations within the cs file
             var methodDeclaration = (MethodDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>") | comment2.Contains("<summary>"))
             {
-                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if(comment1.Contains("///  ") | comment2.Contains("///  "))
+                {
+                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+                // Looks to see if any parameter is left blank in its description
+                if (comment1.Contains("><") | comment2.Contains("><"))
+                {
+                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Parameters must have a definition in xml summary comment.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
+            {
+                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
