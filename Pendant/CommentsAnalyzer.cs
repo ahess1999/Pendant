@@ -24,7 +24,7 @@ namespace Pendant
         /// <summary>
         /// Message layout, displays "Violation" and which one it is
         /// </summary>
-        internal static readonly LocalizableString MessageFormat = "Violation '{0}'";
+        internal static readonly LocalizableString MessageFormat = "Violation: {0}";
 
         /// <summary>
         /// The category of the diagnostic so that you can cipher through which is which

@@ -19,6 +19,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on properties
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedProperties()
         {
@@ -53,6 +56,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on fields
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedFieldDeclarations()
         {
@@ -85,6 +91,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on interfaces
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedInterfaces()
         {
@@ -117,6 +126,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on interfaces, specifically the second letter being capitalized
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedInterfacesSecondLetter()
         {
@@ -149,6 +161,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on structs
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedStructs()
         {
@@ -181,6 +196,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on enums
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedEnums()
         {
@@ -213,6 +231,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on classes
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedClasses()
         {
@@ -245,6 +266,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on methods
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedMethods()
         {
@@ -277,6 +301,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on method parameters
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedParameters()
         {
@@ -309,6 +336,9 @@ namespace AnalyzerTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        /// Verifies whether the Naming Conventions Analyzer can detect proper XML naming conventions on local variables
+        /// </summary>
         [TestMethod]
         public void TestForProperlyNamedLocalVariables()
         {
