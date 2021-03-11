@@ -233,7 +233,7 @@ namespace Pendant
             }
             else
             {
-                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Enums must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -393,7 +393,7 @@ namespace Pendant
             if (comment1.Contains("<summary>") || comment2.Contains("<summary>"))
             {
                 // Looks to see if any parameter is left blank in its description
-                if (comment1.Contains("><") || comment2.Contains("><"))
+                if (comment1.Contains("\"><") || comment2.Contains("\"><"))
                 {
                     var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Parameters must have a definition in an xml summary comment.");
                     context.ReportDiagnostic(diagnostic);

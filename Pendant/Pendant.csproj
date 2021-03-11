@@ -53,9 +53,11 @@
     <Compile Include="ErrorDescriptionControl.xaml.cs">
       <DependentUpon>ErrorDescriptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="INotifyPropertyChangedAnalyzer.cs" />
     <Compile Include="NamingConventionsAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PendantPackage.cs" />
+    <Compile Include="PropertySelfReferenceAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

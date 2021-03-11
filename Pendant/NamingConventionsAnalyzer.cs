@@ -18,6 +18,9 @@ namespace Pendant
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamingConventionsAnalyzer : DiagnosticAnalyzer
     {
+        int t;
+        private int e;
+        protected int f;
         /// <summary>
         /// Public list that stores all the errors found within the open document
         /// </summary>

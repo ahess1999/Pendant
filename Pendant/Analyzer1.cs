@@ -18,7 +18,7 @@ namespace Pendant
         internal static readonly LocalizableString Title = "Analyzer1 Title";
         internal static readonly LocalizableString MessageFormat = "Analyzer1 '{0}'";
         internal const string Category = "Analyzer1 Category";
-
+        
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
