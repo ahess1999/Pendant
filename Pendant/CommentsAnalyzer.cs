@@ -54,7 +54,8 @@ namespace Pendant
             context.RegisterSyntaxNodeAction(AnalyzeCommentOfStructs, SyntaxKind.StructDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzeCommentOfEnums, SyntaxKind.EnumDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzeCommentOfClasses, SyntaxKind.ClassDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzeCommentOfMethods, SyntaxKind.MethodDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfMethodsForxmlSummary, SyntaxKind.MethodDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeCommentOfMethodsForxmlParameters, SyntaxKind.MethodDeclaration);
         }
 
         /// <summary>
@@ -65,8 +66,37 @@ namespace Pendant
         {
             //Finds the property delcarations within the cs file
             var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
+            {
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
             {
                 var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
@@ -81,8 +111,37 @@ namespace Pendant
         {
             //Finds the field delcarations within the cs file
             var fieldDeclaration = (FieldDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
+            {
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
             {
                 var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
@@ -97,8 +156,37 @@ namespace Pendant
         {
             //Finds the interface delcarations within the cs file
             var interfaceDeclaration = (InterfaceDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
+            {
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
             {
                 var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
@@ -113,10 +201,39 @@ namespace Pendant
         {
             //Finds the struct delcarations within the cs file
             var structDeclaration = (StructDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
             {
-                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
+            {
+                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -129,8 +246,37 @@ namespace Pendant
         {
             //Finds the enum delcarations within the cs file
             var enumDeclaration = (EnumDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
+            {
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
             {
                 var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
@@ -143,10 +289,39 @@ namespace Pendant
         /// <param name="context"> The syntax node we are checking </param>
         private static void AnalyzeCommentOfClasses(SyntaxNodeAnalysisContext context)
         {
-            //Finds the class delcarations within the cs file
+            // Finds the method delcarations within the cs file
             var classDeclaration = (ClassDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableArray();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
-            if (context.Node.HasStructuredTrivia == false)
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>"))
+            {
+                // Looks to see if there is a blank section after summary tags to see if there is a typed summary
+                if (com1[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if (com2[3].Trim().Length == 0)
+                {
+                    var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    context.ReportDiagnostic(diagnostic);
+                }
+            }
+            else
             {
                 var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
@@ -157,30 +332,37 @@ namespace Pendant
         /// Analyzes methods in the document to make sure they have proper XML Comment Documentation.
         /// </summary>
         /// <param name="context"> The syntax node we are checking </param>
-        private static void AnalyzeCommentOfMethods(SyntaxNodeAnalysisContext context)
+        private static void AnalyzeCommentOfMethodsForxmlSummary(SyntaxNodeAnalysisContext context)
         {
             // Finds the method delcarations within the cs file
             var methodDeclaration = (MethodDeclarationSyntax)context.Node;
             // Holds the comment trivia for each method
-            var comments = context.Node.DescendantTrivia().ToImmutableList();
+            var comments = context.Node.DescendantTrivia().ToImmutableArray();
             // The comments in the first position of the list stringified
             var comment1 = comments[1].ToString();
+            // split by '/' version of comment1
+            var com1 = comment1.Split('/');
             // The comments in to second position of the list stringified
             var comment2 = comments[2].ToString();
+            // split by '/' version of comment2
+            var com2 = comment2.Split('/');
 
             // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
-            if (comment1.Contains("<summary>") | comment2.Contains("<summary>"))
+            if (comment1.Contains("<summary>"))
             {
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
-                if(comment1.Contains("///  ") | comment2.Contains("///  "))
+                if(com1[3].Trim().Length == 0)
                 {
-                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment.");
+                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
-                // Looks to see if any parameter is left blank in its description
-                if (comment1.Contains("><") | comment2.Contains("><"))
+
+            }
+            else if (comment2.Contains("<summary>"))
+            {
+                if(com2[3].Trim().Length == 0)
                 {
-                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Parameters must have a definition in xml summary comment.");
+                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -188,6 +370,34 @@ namespace Pendant
             {
                 var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes methods in the document to make sure they have proper XML Comment Documentation.
+        /// </summary>
+        /// <param name="context"> The syntax node we are checking </param>
+        private static void AnalyzeCommentOfMethodsForxmlParameters(SyntaxNodeAnalysisContext context)
+        {
+            // Finds the method delcarations within the cs file
+            var methodDeclaration = (MethodDeclarationSyntax)context.Node;
+            // Holds the comment trivia for each method
+            var comments = context.Node.DescendantTrivia().ToImmutableArray();
+            // The comments in the first position of the list stringified
+            var comment1 = comments[1].ToString();
+
+            // The comments in to second position of the list stringified
+            var comment2 = comments[2].ToString();
+
+            // Looks to see if there is an xml summary comment for the method(the first method will be in position 1 but the rest are in position 2)
+            if (comment1.Contains("<summary>") || comment2.Contains("<summary>"))
+            {
+                // Looks to see if any parameter is left blank in its description
+                if (comment1.Contains("><") || comment2.Contains("><"))
+                {
+                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Parameters must have a definition in an xml summary comment.");
+                    context.ReportDiagnostic(diagnostic);
+                }
             }
         }
     }
