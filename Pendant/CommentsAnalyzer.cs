@@ -14,7 +14,7 @@ namespace Pendant
         /// <summary>
         /// The Id for the diagnostic
         /// </summary>
-         public static string DiagnosticId = "Comments";
+         public const string SupportDiagnostic = "Comments";
 
         /// <summary>
         /// Title that displays when a diagnostic error is found
@@ -35,12 +35,12 @@ namespace Pendant
         /// <summary>
         /// Creates the rule for the diagnostic
         /// </summary>
-         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
+         internal static DiagnosticDescriptor SupportRule = new DiagnosticDescriptor(SupportDiagnostic, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
 
         /// <summary>
         /// An immutable array of the diagnostics that returns a new ImmutableArray with the new rule added
         /// </summary>
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(SupportRule); } }
 
         /// <summary>
         /// Initializer for the analyzer
