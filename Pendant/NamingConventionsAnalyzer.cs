@@ -29,7 +29,7 @@ namespace Pendant
         /// <summary>
         /// The Id for the diagnostic
         /// </summary>
-        public const string DiagnosticId = "NamingConventions";
+        /// public const string DiagnosticId = "NamingConventions";
 
         /// <summary>
         /// Title that displays when a diagnostic error is found
@@ -49,7 +49,7 @@ namespace Pendant
         /// <summary>
         /// Creates the rule for the diagnostic
         /// </summary>
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
+        /// internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
 
         /// <summary>
         /// An immutable array of the diagnostics that returns a new ImmutableArray with the new rule added
@@ -101,6 +101,8 @@ namespace Pendant
                 //Finds other locations
                 var otherLocations = from nop in nameOfParameter select nop.Identifier.GetLocation();
                 //Creates the diagnostic
+                const string DiagnosticId = "NAM0001";
+                DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(
                     Rule,
                     location,
@@ -136,6 +138,8 @@ namespace Pendant
                                 //Checks to see if the first character of the field's name is an '_'
                                 if (identName.Identifier.ValueText[0] != '_')
                                 {
+                                    const string DiagnosticId = "NAM0002";
+                                    DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                                     //Creates a diagnostic at the location of the field name
                                     var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Private Fields should start with an '_'");
                                     //Reports the problem in the code
@@ -168,6 +172,8 @@ namespace Pendant
                         //Check to make sure the first letter is 'I'
                         if (identName.Identifier.ValueText[0] != 'I')
                         {
+                            const string DiagnosticId = "Nam0003";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the interface name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I'");
                             //Reports the problem in the code
@@ -176,6 +182,8 @@ namespace Pendant
                         //Check to make sure that the name is for example "IFruit" and not "Ifruit"
                         if (identName.Identifier.ValueText[0] == 'I' && Char.IsLower(identName.Identifier.ValueText[1]))
                         {
+                            const string DiagnosticId = "Nam0004";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the interface name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Interfaces should start with an 'I' and the second letter should be capital");
                             //Reports the problem in the code
@@ -206,6 +214,8 @@ namespace Pendant
                         //Check to make sure the first letter is capitalized
                         if (Char.IsLower(identName.Identifier.ValueText[0]))
                         {
+                            const string DiagnosticId = "Nam0005";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the struct name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Struct names should begin with a capital letter");
                             //Reports the problem in the code
@@ -236,6 +246,8 @@ namespace Pendant
                         //Check to make sure the first letter is capitalized
                         if (Char.IsLower(identName.Identifier.ValueText[0]))
                         {
+                            const string DiagnosticId = "Nam0006";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the enum name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Enum names should begin with a capital letter");
                             //Reports the problem in the code
@@ -266,6 +278,8 @@ namespace Pendant
                         //Check to make sure the first letter is capitalized
                         if (Char.IsLower(identName.Identifier.ValueText[0]))
                         {
+                            const string DiagnosticId = "Nam0007";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the class name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Class names should begin with a capital letter");
                             //Reports the problem in the code
@@ -296,6 +310,8 @@ namespace Pendant
                         //Check to make sure the first letter is capitalized
                         if (Char.IsLower(identName.Identifier.ValueText[0]))
                         {
+                            const string DiagnosticId = "Nam0008";
+                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the method name
                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Method names should begin with a capital letter");
                             //Reports the problem in the code
@@ -336,6 +352,8 @@ namespace Pendant
                                         //Check to make sure the first letter is not capitalized
                                         if (!Char.IsLower(identName.Identifier.ValueText[0]))
                                         {
+                                            const string DiagnosticId = "Nam0009";
+                                            DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                                             //Creates a diagnostic at the location of the parameter name
                                             var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Parameter names should be in camel case");
                                             //Reports the problem in the code
@@ -382,6 +400,8 @@ namespace Pendant
                                             //Check to make sure the first letter is not capitalized
                                             if (!Char.IsLower(identName.Identifier.ValueText[0]))
                                             {
+                                                const string DiagnosticId = "Nam0010";
+                                                DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                                                 //Creates a diagnostic at the location of the parameter name
                                                 var diagnostic = Diagnostic.Create(Rule, identName.Identifier.GetLocation(), "Local variable names should be in camel case");
                                                 //Reports the problem in the code
