@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyzerTests", "AnalyzerTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentsAnalyzerTests", "CommentsAnalyzerTests\CommentsAnalyzerTests.csproj", "{70A8921F-E0BC-4899-A032-276DE7E0B0B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertySelfReferenceTests", "PropertySelfReferenceTests\PropertySelfReferenceTests.csproj", "{413A26D4-4414-473B-A07D-015F85F177EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertySelfReferenceTests", "PropertySelfReferenceTests\PropertySelfReferenceTests.csproj", "{413A26D4-4414-473B-A07D-015F85F177EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
