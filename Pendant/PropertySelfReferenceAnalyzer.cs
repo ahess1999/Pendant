@@ -14,7 +14,7 @@ namespace Pendant
     public class PropertySelfReferenceAnalyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "PropertySelfReferenceAnalyzer";
-        internal static readonly LocalizableString Title = "PropertySelfReferenceAnalyzer Title";
+        internal static readonly LocalizableString Title = "Property Self Reference Violation";
         internal static readonly LocalizableString MessageFormat = "Violation: {0}";
         internal const string Category = "PropertySelfReferenceAnalyzer Category";
 
