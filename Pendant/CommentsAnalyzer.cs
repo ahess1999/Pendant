@@ -4,42 +4,31 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Immutable;
-using System.Text.RegularExpressions;
+using System.Resources;
 
 namespace Pendant
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class CommentsAnalyzer : DiagnosticAnalyzer
     {
+        
         /// <summary>
-        /// The Id for the diagnostic
+        /// Initializs the rules for the diagnostic
         /// </summary>
-        public const string DiagnosticId = "Comments";
+        internal static DiagnosticDescriptor Rule01;
+        internal static DiagnosticDescriptor Rule02;
+        internal static DiagnosticDescriptor Rule03;
+        internal static DiagnosticDescriptor Rule04;
+        internal static DiagnosticDescriptor Rule05;
+        internal static DiagnosticDescriptor Rule06;
+        internal static DiagnosticDescriptor Rule07;
+        internal static DiagnosticDescriptor Rule08;
+        internal static DiagnosticDescriptor Rule09;
 
         /// <summary>
-        /// Title that displays when a diagnostic error is found
+        /// An immutable array of the diagnostics that returns a new ImmutableArray with the new rules added
         /// </summary>
-        internal static readonly LocalizableString Title = "Comment Violation";
-
-        /// <summary>
-        /// Message layout, displays "Violation" and which one it is
-        /// </summary>
-        internal static readonly LocalizableString MessageFormat = "Violation: {0}";
-
-        /// <summary>
-        /// The category of the diagnostic so that you can cipher through which is which
-        /// </summary>
-        internal const string Category = "CommentsAnalyzer Category";
-
-        /// <summary>
-        /// Creates the rule for the diagnostic
-        /// </summary>
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-
-        /// <summary>
-        /// An immutable array of the diagnostics that returns a new ImmutableArray with the new rule added
-        /// </summary>
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule01, Rule02, Rule03, Rule04, Rule05, Rule06, Rule07, Rule08, Rule09); } }
 
         /// <summary>
         /// Initializer for the analyzer
@@ -84,7 +73,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -95,7 +84,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -103,7 +92,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0002";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule02, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -135,7 +124,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -146,7 +135,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -154,7 +143,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0003";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule03, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -186,7 +175,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -197,7 +186,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -205,7 +194,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0004";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule04, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -237,7 +226,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -248,7 +237,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -256,7 +245,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0005";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule05, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -288,7 +277,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -299,7 +288,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -307,7 +296,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0006";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule06, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -339,7 +328,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -350,7 +339,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -358,7 +347,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0007";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule07, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -390,7 +379,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
 
@@ -401,7 +390,7 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0001";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
+                    var diagnostic = Diagnostic.Create(Rule01, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
@@ -409,7 +398,7 @@ namespace Pendant
             {
                 //const string DiagnosticId = "COM0008";
                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
+                var diagnostic = Diagnostic.Create(Rule08, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
         }
@@ -438,10 +427,23 @@ namespace Pendant
                 {
                     //const string DiagnosticId = "COM0009";
                     //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
-                    var diagnostic = Diagnostic.Create(Rule, methodDeclaration.GetLocation(), "Parameters must have a definition in an xml summary comment.");
+                    var diagnostic = Diagnostic.Create(Rule09, methodDeclaration.GetLocation(), "Parameters must have a definition in an xml summary comment.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
+        }
+        public CommentsAnalyzer()
+        {
+            ResourceManager rm = new ResourceManager("Pendant.PendantResources", typeof(CommentsAnalyzer).Assembly);
+            Rule01 = new DiagnosticDescriptor("COM0001", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule02 = new DiagnosticDescriptor("COM0002", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule03 = new DiagnosticDescriptor("COM0003", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule04 = new DiagnosticDescriptor("COM0004", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule05 = new DiagnosticDescriptor("COM0005", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule06 = new DiagnosticDescriptor("COM0006", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule07 = new DiagnosticDescriptor("COM0007", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule08 = new DiagnosticDescriptor("COM0008", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
+            Rule09 = new DiagnosticDescriptor("COM0009", rm.GetString("COM-Title"), rm.GetString("COM-MessageFormat"), rm.GetString("COM-Category"), DiagnosticSeverity.Warning, true);
         }
     }
 }
