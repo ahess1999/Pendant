@@ -13,7 +13,7 @@ namespace Pendant
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class PropertySelfReferenceAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "PropertySelfReferenceAnalyzer";
+        public const string DiagnosticId = "PSR-0001";
         internal static readonly LocalizableString Title = "Property Self Reference Violation";
         internal static readonly LocalizableString MessageFormat = "Violation: {0}";
         internal const string Category = "PropertySelfReferenceAnalyzer Category";
