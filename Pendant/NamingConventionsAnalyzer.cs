@@ -53,11 +53,19 @@ namespace Pendant
         /// </summary>
         internal static DiagnosticDescriptor Rule01;
         internal static DiagnosticDescriptor Rule02;
+        internal static DiagnosticDescriptor Rule03;
+        internal static DiagnosticDescriptor Rule04;
+        internal static DiagnosticDescriptor Rule05;
+        internal static DiagnosticDescriptor Rule06;
+        internal static DiagnosticDescriptor Rule07;
+        internal static DiagnosticDescriptor Rule08;
+        internal static DiagnosticDescriptor Rule09;
+        internal static DiagnosticDescriptor Rule10;
 
         /// <summary>
         /// An immutable array of the diagnostics that returns a new ImmutableArray with the new rule added
         /// </summary>
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule01, Rule02); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule01, Rule02, Rule03, Rule04, Rule05, Rule06, Rule07, Rule08, Rule09, Rule10); } }
 
         /// <summary>
         /// Initializer for the analyzer
@@ -110,7 +118,7 @@ namespace Pendant
                     Rule01,
                     location,
                     otherLocations,
-                    propertyDeclaration.Identifier.ValueText
+                    "Properties should start with a capital letter."
                     );
                 context.ReportDiagnostic(diagnostic);
             }
@@ -178,7 +186,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0003";
                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the interface name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Interfaces should start with an 'I'");
+                            var diagnostic = Diagnostic.Create(Rule03, identName.Identifier.GetLocation(), "Interfaces should start with an 'I'");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -188,7 +196,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0004";
                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the interface name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Interfaces should start with an 'I' and the second letter should be capital");
+                            var diagnostic = Diagnostic.Create(Rule04, identName.Identifier.GetLocation(), "Interfaces should start with an 'I' and the second letter should be capital");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -220,7 +228,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0005";
                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the struct name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Struct names should begin with a capital letter");
+                            var diagnostic = Diagnostic.Create(Rule05, identName.Identifier.GetLocation(), "Struct names should begin with a capital letter");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -252,7 +260,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0006";
                             //DiagnosticDescriptor Rule6 = new DiagnosticDescriptor("Nam0006", Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the enum name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Enum names should begin with a capital letter");
+                            var diagnostic = Diagnostic.Create(Rule06, identName.Identifier.GetLocation(), "Enum names should begin with a capital letter");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -284,7 +292,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0007";
                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the class name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Class names should begin with a capital letter");
+                            var diagnostic = Diagnostic.Create(Rule07, identName.Identifier.GetLocation(), "Class names should begin with a capital letter");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -316,7 +324,7 @@ namespace Pendant
                             //const string DiagnosticId = "Nam0008";
                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                             //Creates a diagnostic at the location of the method name
-                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Method names should begin with a capital letter");
+                            var diagnostic = Diagnostic.Create(Rule08, identName.Identifier.GetLocation(), "Method names should begin with a capital letter");
                             //Reports the problem in the code
                             context.ReportDiagnostic(diagnostic);
                         }
@@ -358,7 +366,7 @@ namespace Pendant
                                             //const string DiagnosticId = "Nam0009";
                                             //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                                             //Creates a diagnostic at the location of the parameter name
-                                            var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Parameter names should be in camel case");
+                                            var diagnostic = Diagnostic.Create(Rule09, identName.Identifier.GetLocation(), "Parameter names should be in camel case");
                                             //Reports the problem in the code
                                             context.ReportDiagnostic(diagnostic);
                                         }
@@ -406,7 +414,7 @@ namespace Pendant
                                                 //const string DiagnosticId = "Nam0010";
                                                 //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                                                 //Creates a diagnostic at the location of the parameter name
-                                                var diagnostic = Diagnostic.Create(Rule01, identName.Identifier.GetLocation(), "Local variable names should be in camel case");
+                                                var diagnostic = Diagnostic.Create(Rule10, identName.Identifier.GetLocation(), "Local variable names should be in camel case");
                                                 //Reports the problem in the code
                                                 context.ReportDiagnostic(diagnostic);
                                             }
@@ -424,6 +432,14 @@ namespace Pendant
             ResourceManager rm = new ResourceManager("Pendant.PendantResources", typeof(NamingConventionsAnalyzer).Assembly);
             Rule01 = new DiagnosticDescriptor("NAM0001", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
             Rule02 = new DiagnosticDescriptor("NAM0002", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule03 = new DiagnosticDescriptor("NAM0003", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule04 = new DiagnosticDescriptor("NAM0004", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule05 = new DiagnosticDescriptor("NAM0005", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule06 = new DiagnosticDescriptor("NAM0006", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule07 = new DiagnosticDescriptor("NAM0007", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule08 = new DiagnosticDescriptor("NAM0008", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule09 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule10 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Resources;
 using System.Threading;
 
 namespace Pendant
@@ -18,9 +19,9 @@ namespace Pendant
         internal static readonly LocalizableString MessageFormat = "Violation: {0}";
         internal const string Category = "PropertySelfReferenceAnalyzer Category";
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true);
+        internal static DiagnosticDescriptor Rule01;
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule01); } }
 
         /// <summary>
         /// Initializes the PropertySelfReferenceAnalyzer
@@ -51,7 +52,7 @@ namespace Pendant
                 var primaryLocation = propertyDeclaration.Identifier.GetLocation();
                 var additionalLocations = from sr in selfReference select sr.Identifier.GetLocation();
                 var diagnostic = Diagnostic.Create(
-                    Rule,
+                    Rule01,
                     primaryLocation,
                     additionalLocations,
                     "Properties should not be referencing themselves, check your getter."
@@ -60,5 +61,10 @@ namespace Pendant
             }
         }
 
+        public PropertySelfReferenceAnalyzer()
+        {
+            ResourceManager rm = new ResourceManager("Pendant.PendantResources", typeof(CommentsAnalyzer).Assembly);
+            Rule01 = new DiagnosticDescriptor("PSR0001", rm.GetString("PSR-Title"), rm.GetString("PSR-MessageFormat"), rm.GetString("PSR-Category"), DiagnosticSeverity.Warning, true);
+        }
     }
 }
