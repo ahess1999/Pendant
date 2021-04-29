@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Immutable;
 using System.Resources;
+using System.Globalization;
 
 namespace Pendant
 {

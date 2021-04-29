@@ -55,6 +55,16 @@
     </Compile>
     <Compile Include="INotifyPropertyChangedAnalyzer.cs" />
     <Compile Include="NamingConventionsAnalyzer.cs" />
+    <Compile Include="PendantResources.Zh.Designer.cs">
+      <DependentUpon>PendantResources.Zh.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PendantResources.Sp.Designer.cs">
+      <DependentUpon>PendantResources.Sp.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PendantPackage.cs" />
     <Compile Include="PropertySelfReferenceAnalyzer.cs" />
@@ -119,6 +129,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PendantResources.Zh.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PendantResources.Zh.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PendantResources.Sp.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PendantResources.Sp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="PendantResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PendantResources.Designer.cs</LastGenOutput>
