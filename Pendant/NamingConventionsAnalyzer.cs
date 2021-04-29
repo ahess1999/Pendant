@@ -410,16 +410,16 @@ namespace Pendant
         public NamingConventionsAnalyzer() 
         {
             ResourceManager rm = new ResourceManager("Pendant.PendantResources", typeof(NamingConventionsAnalyzer).Assembly);
-            Rule01 = new DiagnosticDescriptor("NAM0001", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule02 = new DiagnosticDescriptor("NAM0002", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule03 = new DiagnosticDescriptor("NAM0003", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule04 = new DiagnosticDescriptor("NAM0004", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule05 = new DiagnosticDescriptor("NAM0005", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule06 = new DiagnosticDescriptor("NAM0006", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule07 = new DiagnosticDescriptor("NAM0007", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule08 = new DiagnosticDescriptor("NAM0008", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule09 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
-            Rule10 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), Category, DiagnosticSeverity.Warning, true);
+            Rule01 = new DiagnosticDescriptor("NAM0001", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule02 = new DiagnosticDescriptor("NAM0002", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule03 = new DiagnosticDescriptor("NAM0003", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule04 = new DiagnosticDescriptor("NAM0004", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule05 = new DiagnosticDescriptor("NAM0005", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule06 = new DiagnosticDescriptor("NAM0006", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule07 = new DiagnosticDescriptor("NAM0007", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule08 = new DiagnosticDescriptor("NAM0008", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule09 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
+            Rule10 = new DiagnosticDescriptor("NAM0009", rm.GetString("NAM-Title"), rm.GetString("NAM-MessageFormat"), rm.GetString("NAM-Category"), DiagnosticSeverity.Warning, true);
         }
     }
 }

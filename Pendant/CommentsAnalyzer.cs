@@ -6,6 +6,7 @@ using System;
 using System.Collections.Immutable;
 using System.Resources;
 using System.Globalization;
+using System.Threading;
 
 namespace Pendant
 {
@@ -72,8 +73,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -83,16 +82,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, propertyDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0002";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule02, propertyDeclaration.GetLocation(), "Properties must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -123,8 +118,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -134,16 +127,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, fieldDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0003";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule03, fieldDeclaration.GetLocation(), "Fields must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -174,8 +163,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -185,16 +172,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, interfaceDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0004";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule04, interfaceDeclaration.GetLocation(), "Interfaces must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -225,8 +208,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -236,16 +217,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, structDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0005";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule05, structDeclaration.GetLocation(), "Structs must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -276,8 +253,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -287,16 +262,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, enumDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0006";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule06, enumDeclaration.GetLocation(), "Enums must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -327,8 +298,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if (com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -338,16 +307,12 @@ namespace Pendant
             {
                 if (com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, classDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
-            {
-                //const string DiagnosticId = "COM0007";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
+            {  
                 var diagnostic = Diagnostic.Create(Rule07, classDeclaration.GetLocation(), "Classes must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -378,8 +343,6 @@ namespace Pendant
                 // Looks to see if there is a blank section after summary tags to see if there is a typed summary
                 if(com1[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
@@ -389,16 +352,12 @@ namespace Pendant
             {
                 if(com2[3].Trim().Length == 0)
                 {
-                    //const string DiagnosticId = "COM0001";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule01, methodDeclaration.GetLocation(), "Must include a summary in xml summary comment with no extra new lines.");
                     context.ReportDiagnostic(diagnostic);
                 }
             }
             else
             {
-                //const string DiagnosticId = "COM0008";
-                //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                 var diagnostic = Diagnostic.Create(Rule08, methodDeclaration.GetLocation(), "Methods must have an xml summary comment.");
                 context.ReportDiagnostic(diagnostic);
             }
@@ -426,8 +385,6 @@ namespace Pendant
                 // Looks to see if any parameter is left blank in its description
                 if (comment1.Contains("\"><") || comment2.Contains("\"><"))
                 {
-                    //const string DiagnosticId = "COM0009";
-                    //DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
                     var diagnostic = Diagnostic.Create(Rule09, methodDeclaration.GetLocation(), "Parameters must have a definition in an xml summary comment.");
                     context.ReportDiagnostic(diagnostic);
                 }
